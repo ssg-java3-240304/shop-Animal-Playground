@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<head>
+    <title>Refund</title>
+</head>
+
+<body id="page-top">
+<main layout:fragment="main">
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Edit Product</h1>
+
+                <!-- Edit Product Form Card -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Product Information</h6>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/product/edit}" th:object="${product}" method="post">
+                            <input type="hidden" th:field="*{productId}">
+
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" class="form-control" id="productName" th:field="*{productName}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <input type="text" class="form-control" id="category" th:field="*{category}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productDesc">Description</label>
+                                <textarea class="form-control" id="productDesc" th:field="*{productDesc}" rows="3"></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="price">Price</label>
+                                    <input type="number" class="form-control" id="price" th:field="*{price}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="amount">Amount</label>
+                                    <input type="number" class="form-control" id="amount" th:field="*{amount}" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="isDisplay" th:field="*{isDisplay}">
+                                    <label class="custom-control-label" for="isDisplay">Display Product</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productStatus">Product Status</label>
+                                <select class="form-control" id="productStatus" th:field="*{productStatus}">
+                                    <option value="판매중">판매중</option>
+                                    <option value="단종">단종</option>
+                                    <option value="품절">품절</option>
+                                </select>
+                            </div>
+
+                            <!-- 버튼들을 div로 감싸고 마진을 추가 -->
+                            <div class="form-group" style="margin-top: 20px;">
+                                <button type="submit" class="btn btn-primary" style="display: inline-block;">Save Changes</button>
+                                <a th:href="@{/product/detail/{id}(id=${product.productId})}" class="btn btn-secondary" style="display: inline-block; margin-left: 10px;">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+</main>
+
+</body>
+
+</html>
